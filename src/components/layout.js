@@ -2,11 +2,17 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-
+import styled from 'styled-components';
 import Header from "./header"
 import Archive from "./archive"
 import "./layout.css"
 
+const MainLayout = styled.main`
+  max-width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+`
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -22,28 +28,19 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header
-        siteTitle={data.site.siteMetadata.title}
-        meta={[
-          {
-            name: 'description',
-            content: data.site.siteMetadata.description,
-          }
-        ]} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+        siteTitle={data.site.siteMetadata.title} />
+      <MainLayout>
+        <div>{children}</div>
         <Archive />
-      </div>
+      </MainLayout>
+
+      <footer>
+        © {new Date().getFullYear()}, Built with
+          {` `}
+        <a href="https://www.gatsbyjs.org">Gatsby</a>
+
+      </footer>
+
     </>
   )
 }
