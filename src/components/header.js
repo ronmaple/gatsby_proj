@@ -2,11 +2,11 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import styled from 'styled-components'
-import logo from '../images/placeholder.png'
+// import logo from '../images/placeholder.png'
+import logo from '../images/RonM2.png';
 
 const HeaderWrapper = styled.div`
-  background: #524763;
-  margin-bottom: 1.45rem;
+  background: white;
   img {
     margin-bottom: 0;
   }
@@ -14,8 +14,9 @@ const HeaderWrapper = styled.div`
 
 const HeaderContainer = styled.div`
     margin: 0 auto;
-    max-width: 960px;
+    height: 100px;
     padding: 0.3rem;
+    /* border-bottom: solid 2px ${props => props.theme.colors.darkBlue}; */
 `;
 
 
@@ -31,7 +32,8 @@ const Header = ({ siteTitle }) => (
           }}
         >
           <img style={{
-            width: '100px',
+            width: '85px',
+            padding: '10px'
           }}
             src={logo}
             alt="Placeholder" />

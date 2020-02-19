@@ -10,6 +10,9 @@ query BlogPostArchive {
         }) {
             edges {
                 node {
+                    fields {
+                        slug
+                    }
                     frontmatter {
                         title
                         slug
@@ -19,6 +22,26 @@ query BlogPostArchive {
         }
     }
 `;
+
+const ArchiveAside = styled.aside`
+    background-color: white;
+    height: auto;
+    right: 0;
+    padding: 1rem;
+    width: 90%;
+    border-radius: 5px;
+    box-shadow: ${props => props.theme.shadow};
+    height: 300px;
+`
+
+const ArchiveTitle = styled.div`
+    background-color: ${props => props.theme.colors.darkBlue};
+    padding: 0.5em 0.5em 0em 0.5em;
+
+    h3 {
+        color: white;
+    }
+`
 
 const ArchiveList = styled.ul`
     padding: 0;
@@ -31,27 +54,28 @@ const ArchiveList = styled.ul`
         color: #524763;
     }
 `
-
 const Archive = () => {
     const { allMarkdownRemark } = useStaticQuery(POST_ARCHIVE_QUERY);
 
     return (
         <>
-            <aside>
-                <h3>Archive</h3>
+            <ArchiveAside>
+                <ArchiveTitle>
+                    <h3>Latest Posts</h3>
+                </ArchiveTitle>
                 <ArchiveList>
                     {allMarkdownRemark.edges.map(edge => (
                         <li
-                            key={edge.node.frontmatter.slug}
+                            key={edge.node.fields.slug}
                         >
-                            <Link to={`/posts${edge.node.frontmatter.slug}`}>
+                            <Link to={`/posts${edge.node.fields.slug}`}>
                                 {edge.node.frontmatter.title}
                             </Link>
                         </li>
                     ))}
                 </ArchiveList>
 
-            </aside>
+            </ArchiveAside>
         </>
     )
 }

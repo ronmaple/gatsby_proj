@@ -10,6 +10,7 @@ export default class postLayout extends Component {
         const { markdownRemark } = this.props.data;
         const { location } = this.props;
 
+        console.log('postLayout this.props', this.props)
         return (
             <Layout location={location}>
                 <h1>{markdownRemark.frontmatter.title}</h1>
@@ -23,7 +24,7 @@ export default class postLayout extends Component {
 
 export const query = graphql`
     query PostQuery($slug: String!) {
-    markdownRemark(frontmatter:{
+    markdownRemark(fields:{
             slug: {
                 eq: $slug   
             }

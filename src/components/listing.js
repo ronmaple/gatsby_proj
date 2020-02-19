@@ -16,17 +16,25 @@ const LISTING_QUERY = graphql`
                         title
                         slug
                         }
+                    fields {
+                        slug
                     }
                 }
+            }
         }
     }
 `
 
 const Post = styled.article`
-    box-shadow: 0px 3px 10px rgba(25, 17, 34, 0.05);
+    box-shadow: ${props => props.theme.shadow};
     padding: 1rem;
     border-radius: 4px;
     margin-bottom: 1rem;
+    background-color: white;
+    align-self: center;
+    width: 100%;
+    height: 250px;
+    
     a {
         color: #000;
         text-decoration: none;
@@ -49,12 +57,12 @@ const Listing = () => {
     return (
         allMarkdownRemark.edges.map(({ node }) => (
             <Post key={node.frontmatter.slug}>
-                <Link to={`posts${node.frontmatter.slug}`}>
+                <Link to={`posts${node.fields.slug}`}>
                     <h2>{node.frontmatter.title}</h2>
                 </Link>
                 <p>{node.frontmatter.date}</p>
                 <p>{node.excerpt}</p>
-                <Link className="read-more" to={`posts${node.frontmatter.slug}`}>Read More</Link>
+                <Link className="read-more" to={`posts${node.fields.slug}`}>Read More</Link>
             </Post>
         ))
     )

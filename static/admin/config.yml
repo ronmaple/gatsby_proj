@@ -12,7 +12,7 @@ collections:
     label: "Blog"
     folder: "src/posts"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{slug}}"
     editor:
      preview: false
     fields:

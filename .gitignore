@@ -69,6 +69,6 @@ yarn-error.log
 .yarn-integrity
 
 # important files
-src/posts
-src/team
+src/posts/
+src/team/
 
